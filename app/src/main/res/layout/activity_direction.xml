@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#221F1F"
-    tools:context=".MainActivity">
+    tools:context=".Direction">
 
     <ImageView
-        android:id="@+id/main_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/pulsating_button"
+        android:id="@+id/arrow"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/direction_arrow"
         android:layout_centerInParent="true"
         />
 
