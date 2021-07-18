@@ -5,8 +5,8 @@
     <aapt:attr name="android:drawable">
         <vector
             android:name="vector"
-            android:width="100dp"
-            android:height="100dp"
+            android:width="300dp"
+            android:height="300dp"
             android:viewportWidth="32"
             android:viewportHeight="32">
 
@@ -16,12 +16,12 @@
                 <path
                     android:name="dot_path"
                     android:fillColor="#00E676"
-                    android:pathData="M 0,0 m -5,0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0"/>
+                    android:pathData="M 0,0 m -10,0 a 10,10 0 2,0 20,0 a 10,10 0 2,0 -20,0"/>
 
                 <group android:name="ring_outer">
                     <path
                         android:name="ring_outer_path"
-                        android:pathData="M 0,0 m -9,0 a 9,9 0 1,0 18,0 a 9,9 0 1,0 -18,0"
+                        android:pathData="M 0,0 m -18,0 a 18,18 0 2,0 36,0 a 18,18 0 2,0 -36,0"
                         android:strokeColor="#00E676"
                         android:strokeWidth="1"/>
                 </group>

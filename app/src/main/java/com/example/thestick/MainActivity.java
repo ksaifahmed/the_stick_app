@@ -155,15 +155,15 @@ public class MainActivity extends AppCompatActivity {
                             if( c=='L' ) {
                                 leftSound.start();
                                 Direction.degree = -90;
-                                //Direction.dir = "Turn Left";
+                                Direction.dir = "Turn Left";
                             }
                             else if( c=='R' ) {
                                 rightSound.start();
                                 Direction.degree = 90;
-                                //Direction.dir = "Turn Right";
+                                Direction.dir = "Turn Right";
                             }else if( c=='F') {
                                 Direction.degree = 0;
-                                //Direction.dir = "Move Forward";
+                                Direction.dir = "Move Forward";
                             }
                             System.out.println(c);
                         } catch (Exception e) {

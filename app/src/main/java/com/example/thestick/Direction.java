@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,27 +34,7 @@ public class Direction extends AppCompatActivity {
         }
 
         //loop
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true)
-                {
-                    try {
-                        //TODO: if bluetooth connection disrupts call StopDirecting()
-
-                        Thread.sleep(100);
-                        //direction of arrow
-                        image.setRotation(degree);
-                        //direction.setText("wad");
-                        Log.d("image: \t\t", String.valueOf(image.getRotation()));
-
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        t.start();
+        startUIThread();
     }
 
 
@@ -70,6 +51,29 @@ public class Direction extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void startUIThread() {
+        Handler handler = new Handler();
+        Runnable runnable = () -> {
+            while (true) {
+                try {
+                    Thread.sleep(100);
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break;
+                }
+                handler.post(new Runnable(){
+                    public void run() {
+                        image.setRotation(degree);
+                        direction.setText(dir);
+                        //Log.d("image: \t\t", String.valueOf(image.getRotation()));
+                    }
+                });
+            }
+        };
+        new Thread(runnable).start();
     }
 
 }

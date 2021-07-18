@@ -9,23 +9,19 @@
 
     <ImageView
         android:id="@+id/main_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/pulsating_button"
         android:layout_centerInParent="true"
         />
 
-
     <TextView
-        android:id="@+id/pairbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Press to Start"
-        android:layout_alignBottom="@+id/main_button"
-        android:layout_centerHorizontal="true"
+        android:text="@string/press_btn"
+        android:layout_centerInParent="true"
         android:textColor="@color/white"
-        android:textSize="29sp"
-
+        android:textSize="24sp"
         />
 
 
