@@ -1,11 +1,13 @@
 package com.example.thestick;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
@@ -16,7 +18,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -26,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private AnimatedVectorDrawable animation;
     private float degree = 0;
     private boolean doubleBackToExitPressedOnce = false;
+    private TextView textView;
 
     // ADDED BY TAKBIR - START
     String address = "00:18:E4:40:00:06";  // Hardcoded address - unique to each HC-05
@@ -43,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         image = findViewById(R.id.main_button);
+        textView = findViewById(R.id.main_button_text);
+
         Drawable d = image.getDrawable();
         if(d instanceof  AnimatedVectorDrawable)
         {
@@ -54,7 +62,13 @@ public class MainActivity extends AppCompatActivity {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StartDirecting();
+                if(isBtConnected) {
+                    StartDirecting();
+                }
+                else {
+                    Snackbar.make(v, "Connection Failed. Try Again by Switching Bluetooth on and off", Snackbar.LENGTH_LONG)
+                            .show();
+                }
             }
         });
 
@@ -131,9 +145,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (!ConnectSuccess) {
                 System.out.println("Connection Failed. Is it a SPP Bluetooth? Try again.");
+                textView.setText("Failed to Connect");
                 finish();
             } else {
                 System.out.println("Connected");
+                textView.setText("Connected");
                 isBtConnected = true;
             }
             sampleDistance();
