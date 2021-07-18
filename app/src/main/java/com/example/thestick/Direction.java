@@ -8,12 +8,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class Direction extends AppCompatActivity {
     private ImageView image;
+    public static String dir = "Move Forward";
+    private TextView direction;
     private AnimatedVectorDrawable animation;
-    private float degree = 0;
+    public static float degree = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,7 @@ public class Direction extends AppCompatActivity {
         setContentView(R.layout.activity_direction);
 
         image = findViewById(R.id.arrow);
+        direction = findViewById(R.id.direction_text);
         Drawable d = image.getDrawable();
         if(d instanceof  AnimatedVectorDrawable)
         {
@@ -37,10 +41,10 @@ public class Direction extends AppCompatActivity {
                     try {
                         //TODO: if bluetooth connection disrupts call StopDirecting()
 
-                        Thread.sleep(1200);
+                        Thread.sleep(100);
                         //direction of arrow
-                        degree += 90;
                         image.setRotation(degree);
+                        //direction.setText("wad");
                         Log.d("image: \t\t", String.valueOf(image.getRotation()));
 
                     } catch (InterruptedException e) {

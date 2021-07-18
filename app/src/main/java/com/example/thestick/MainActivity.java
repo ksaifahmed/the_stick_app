@@ -150,13 +150,22 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             Thread.sleep(500);
                             sendSignal("1");
+                            System.out.println("SENT :"+1);
                             char c = (char) btSocket.getInputStream().read();
                             if( c=='L' ) {
                                 leftSound.start();
+                                Direction.degree = -90;
+                                //Direction.dir = "Turn Left";
                             }
                             else if( c=='R' ) {
                                 rightSound.start();
+                                Direction.degree = 90;
+                                //Direction.dir = "Turn Right";
+                            }else if( c=='F') {
+                                Direction.degree = 0;
+                                //Direction.dir = "Move Forward";
                             }
+                            System.out.println(c);
                         } catch (Exception e) {
                             System.out.println("Error in Receiving");
                         }
